@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Gestão de alunos</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<img class="img-responsive" src="../static/cubitos.png" th:src="@{/cubitos.png}"/>
+	<h3>Inserir um aluno</h3>
+		<form action="#" th:action="@{/alunos}" th:object="${aluno}" method="post">
+			<p>Nome: <input type="text" th:field="*{name}" /></p>
+			<p>Número: <input type="text" th:field="*{code}" /></p>
+			<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+		</form>
+	<h3>Pesquisar alunos (<span th:text="${size}"/>)</h3>
+		<p>Existem <b th:text="${length}"></b> alunos. (usar '.*' para listar todos)</p>
+		<form action="#" th:action="@{/alunos/find}" th:object="${aluno}" method="post">
+			<p>Expressão regular: <input type="text" th:field="*{name}" />
+			<input type="submit" value="Submit" /> </p>
+		<table>
+			<th>Nome</th>
+			<th>Número</th>
+			<tr th:each="aluno: ${regex}">
+				<td th:text="${aluno.name}">Money</td>
+				<td th:text="${aluno.code}">B123</td>
+			</tr>
+		</table>
+		</form>
+	
+	<h3>Remover um aluno</h3>
+		<form action="#" th:action="@{/alunos/remove}" th:object="${aluno}" method="post">
+			<p>Número: <input type="text" th:field="*{code}" />
+			<input type="submit" value="Submit" /> </p>
+		</form>
+	
+	<h3>Apagar TODOS os alunos</h3>
+		<a href="/alunos/delete">here</a>
+	<!--h3>Listagem de alunos</h3>
+		<table>
+			<th>Nome</th>
+			<th>Número</th>
+			<tr th:each="aluno: ${alunos}">
+				<td th:text="${aluno.name}">Money</td>
+				<td th:text="${aluno.code}">B123</td>
+			</tr>
+		</table-->
+	<h3>Sair da gestão de alunos (guarda lista)</h3>
+		<a href="/alunos/quit">here</a>
+	<h3>Suspender a gestão de alunos (não guarda, mas mantém os dados)</h3>
+		<a href="/">here</a>
+	<h3>Abandonar a gestão de alunos (não guarda as alterações)</h3>
+		<a href="/alunos/abandon">here</a>
+</body>
+</html>

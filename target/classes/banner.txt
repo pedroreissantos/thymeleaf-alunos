@@ -1,0 +1,8 @@
+=======================================================================
+
+Thymeleaf example
+${application.title} ${application.version}
+
+(build with Sprint Boot ${spring-boot.version})
+
+=======================================================================
